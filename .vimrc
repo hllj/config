@@ -1,5 +1,5 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype plugin indent on                  " required
 
 call plug#begin('~/.vim/plugged')
 
@@ -7,7 +7,6 @@ Plug 'morhetz/gruvbox'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-surround'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
@@ -17,18 +16,14 @@ Plug 'w0rp/ale'
 call plug#end()            " required
 
 syntax on
-
-set autoindent
-set smartindent
-
-set tabstop=2
-set shiftwidth=2
-set shiftround
+set tabstop=4
+set shiftwidth=4
 set expandtab
 
 set backspace=2
 
-set ai
+set autoindent
+set smartindent
 set hlsearch
 set number
 set relativenumber
@@ -36,7 +31,9 @@ set ruler
 set splitbelow
 set splitright
 set clipboard=unnamedplus
+set paste
 set showcmd
+set wildmenu
 set cursorline
 
 nnoremap <C-Left> :tabprevious<CR>
@@ -95,38 +92,3 @@ set laststatus=2
 
 " setup for nerdtree
 map <C-a> :NERDTreeToggle<CR>
-
-" setup for linter
-let g:ale_linters = {
-      \  'python': ['flake8'],
-      \  'c': ['cpplint', 'g++'],
-      \  'cpp': ['cpplint', 'g++'],
-      \ }
-let g:ale_fixers = {
-      \  '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \  'python': ['black'],
-      \  'c': ['clang-format'],
-      \  'cpp': ['clang-format'],
-      \ }
-let g:ale_fix_on_save = 1
-
-" setup for linter lightline
-let g:lightline = {}
-
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_infos': 'lightline#ale#infos',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
-
-let g:lightline.component_type = {
-      \     'linter_checking': 'right',
-      \     'linter_infos': 'right',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'right',
-      \ }
-
-let g:lightline.active = { 'right': [[ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ]] }
